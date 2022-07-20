@@ -76,3 +76,40 @@ exports.create = async (req, res) => {
     return res.status(500).send({ error: e.message || e });
   }
 }
+
+exports.findById = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const lesson = await knex
+    .select('*')
+    .from('lessons')
+    .where({ id })
+    .first()
+
+    if (!lesson) {
+      return res.status(404).send({
+        status: `aula com o id ${id} não foi encontrada`
+      })
+    }
+
+    const instructor = await knex
+    .select('*')
+    .from('instructor')
+    .where({instructorId: id})
+
+
+
+    
+    return res.status(200).send({
+      ...lessons, 
+         instructors,
+    })
+  } catch (e) {
+    return res.status(500).send({ error: e.message || e })
+  }
+}
+
+   
+
+

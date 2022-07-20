@@ -1,21 +1,28 @@
-const express = require('express');
+const express = require('express')
 
-const routes = express.Router();
+const routes = express.Router()
 
-const IndexController = require('./controllers/IndexController'); 
-const CoursesController = require('./controllers/CoursesController');
-const InstructorsController = require('./controllers/InstructorsController');
-const LessonsController = require('./controllers/LessonsController');
+const IndexController = require('./controllers/IndexController')
+const CoursesController = require('./controllers/CoursesController')
+const InstructorsController = require('./controllers/InstructorsController')
+const LessonsController = require('./controllers/LessonsController')
 
-routes.get('/', IndexController.index);
+//rotas de indíce
+routes.get('/', IndexController.index)
 
-routes.post('/courses', CoursesController.create);
+//rotas de cursos
+routes.get('/courses', CoursesController.find)
+routes.get('/courses/:id', CoursesController.findById)
+routes.post('/courses', CoursesController.create)
 
-routes.post('/instructors', InstructorsController.create);
+//rotas de professores
+routes.post('/instructors', InstructorsController.create)
 
-routes.post('/lessons', LessonsController.create);
+//rotas de aulas
+routes.get('/lessons/:id', LessonsController.findById)
+routes.post('/lessons', LessonsController.create)
 
-module.exports = routes;
+module.exports = routes
 
 // lessons
 // courses

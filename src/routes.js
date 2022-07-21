@@ -1,28 +1,38 @@
-const express = require('express')
+const express = require('express');
 
-const routes = express.Router()
+const routes = express.Router();
 
-const IndexController = require('./controllers/IndexController')
-const CoursesController = require('./controllers/CoursesController')
-const InstructorsController = require('./controllers/InstructorsController')
-const LessonsController = require('./controllers/LessonsController')
+const IndexController = require('./controllers/IndexController'); 
+const CoursesController = require('./controllers/CoursesController');
+const InstructorsController = require('./controllers/InstructorsController');
+const LessonsController = require('./controllers/LessonsController');
 
-//rotas de indíce
-routes.get('/', IndexController.index)
+routes.get('/', IndexController.index);
 
-//rotas de cursos
-routes.get('/courses', CoursesController.find)
-routes.get('/courses/:id', CoursesController.findById)
-routes.post('/courses', CoursesController.create)
+// Rotas de cursos
+routes.post('/courses', CoursesController.create);
+routes.patch('/courses/:id', CoursesController.update);
 
-//rotas de professores
-routes.post('/instructors', InstructorsController.create)
 
-//rotas de aulas
-routes.get('/lessons/:id', LessonsController.findById)
-routes.post('/lessons', LessonsController.create)
+routes.get('/courses', CoursesController.find);
+routes.get('/courses/:id', CoursesController.findById);
 
-module.exports = routes
+
+routes.post('/instructors', InstructorsController.create);
+routes.patch('/instructors/:id', InstructorsController.update);
+
+
+routes.get('/instructors', InstructorsController.find);
+routes.get('/instructors/:id', InstructorsController.findById);
+
+routes.post('/lessons', LessonsController.create);
+routes.get('/lessons/:id', LessonsController.findById);
+
+
+routes.get('/lessons', LessonsController.find);
+routes.get('/lessons/:id', LessonsController.findById);
+
+module.exports = routes;
 
 // lessons
 // courses

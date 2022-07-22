@@ -154,4 +154,5 @@ exports.findById = async (req, res) => {
   } catch (e) {
     return res.status(500).send({ error: e.message || e });
   }
+  
 }
